@@ -18,7 +18,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
-    "basic-view-data": "^0.0.8",
+    "basic-view-data": "^0.0.12",
     "basic-view-less": "^0.0.11",
     "ng-zorro-antd": "^12.0.1",
     "ngx-markdown": "^11.0.1",
