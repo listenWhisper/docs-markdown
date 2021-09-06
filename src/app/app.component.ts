@@ -9,6 +9,9 @@ export class AppComponent {
   selectedIndex = 0;
   navigationList = []
   toGitHub(): void{
-    debugger
+    const a = document.createElement('a');
+    a.href = 'https://github.com/listenWhisper/docs-markdown';
+    a.target = '_blank';
+    a.click()
   }
 }
