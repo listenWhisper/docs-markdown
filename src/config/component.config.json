@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "通用",
+    "Children": [
+      {
+        "Name": "用户登录",
+        "Router": "/component/user-login",
+        "ReadName": "announcement",
+        "Mark": "announcement"
+      },
+      {
+        "Name": "公示公告",
+        "Router": "/component/announcement",
+        "ReadName": "announcement",
+        "Mark": "announcement"
+      }
+    ]
+  }
+]

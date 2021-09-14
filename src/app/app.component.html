@@ -7,7 +7,7 @@
     <div class="header-explanation display-flex align-items-center">
       <div class="header-explanation-tab">
         <nz-tabset [(nzSelectedIndex)]="selectedIndex" nzTabPosition="bottom">
-          <nz-tab [nzTitle]="item" *ngFor="let item of navigationList; let i = index"></nz-tab>
+          <nz-tab *ngFor="let item of headerMenuList.items; let i = index" [nzTitle]="item.Name" ></nz-tab>
         </nz-tabset>
       </div>
       <i class="header-explanation-github cursor-pointer" nz-icon nzType="github" nzTheme="outline" viewIcon (click)="toGitHub()"></i>
@@ -17,6 +17,8 @@
     <nz-sider class="h-100 content-side" nzTheme="light" nzWidth="16%">
 
     </nz-sider>
-    <nz-content></nz-content>
+    <nz-content>
+
+    </nz-content>
   </nz-content>
 </nz-layout>

@@ -1,0 +1,31 @@
+[
+  {
+    "Name": "开发指南",
+    "Children": [
+      {
+        "Name": "快速上手",
+        "Router": "/document/quickstart",
+        "ReadName": "quickstart",
+        "Mark": "quickstart"
+      },
+      {
+        "Name": "配置文件",
+        "Router": "/document/configuration-file",
+        "ReadName": "configuration-file",
+        "Mark": "configuration-file"
+      },
+      {
+        "Name": "更新日志",
+        "Router": "/document/changelog",
+        "ReadName": "changelog",
+        "Mark": "changelog"
+      },
+      {
+        "Name": "样式覆盖",
+        "Router": "/document/custom-style",
+        "ReadName": "custom-style",
+        "Mark": "custom-style"
+      }
+    ]
+  }
+]

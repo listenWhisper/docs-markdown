@@ -1,0 +1,12 @@
+[
+  {
+    "Mark": "document",
+    "Name": "文档",
+    "Router": "/document/quickstart"
+  },
+  {
+    "Mark": "component",
+    "Name": "组件",
+    "Router": "/component/user-login"
+  }
+]
