@@ -16,13 +16,16 @@ import {NzIconModule} from 'ng-zorro-antd/icon';
 import {ViewIconComponent} from './components/view-icon/view-icon.component';
 import {ViewIconDirectives} from './directives';
 import {NzTabsModule} from 'ng-zorro-antd/tabs';
+import { RouterComponent } from './views/router/router.component';
+import {ReadonlyMarkdownComponent} from './components/readonly-markdown/readonly-markdown.component';
 registerLocaleData(zh);
 
 const Views = [];
 
 const Components = [
   AppComponent,
-  ViewIconComponent
+  ViewIconComponent,
+  ReadonlyMarkdownComponent
 ];
 
 const Directives = [
@@ -40,7 +43,8 @@ const Module = [
 @NgModule({
   declarations: [
     Components,
-    Directives
+    Directives,
+    RouterComponent
   ],
   imports: [
     BrowserModule,
