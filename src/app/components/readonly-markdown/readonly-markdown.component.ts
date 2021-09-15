@@ -8,15 +8,14 @@ import {MarkdownService} from '../../services/markdown.service';
   styleUrls: ['./readonly-markdown.component.less']
 })
 export class ReadonlyMarkdownComponent implements OnInit {
-  markdownContent: string | undefined;
+  markdownContent!: string;
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private markdownService: MarkdownService
   ) {
-    debugger
-    this.markdownService.getMarkDown(this.router.url.substring(1)).then(res => {
-      debugger
+    this.markdownService.getMarkDown<string>(this.router.url.substring(1)).then(res => {
+      this.markdownContent = res;
     }).catch(err => {
       console.log(err);
       this.markdownContent = '';

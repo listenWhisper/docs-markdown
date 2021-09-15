@@ -1,16 +1,9 @@
-import {BasicViewDataPacket, BasicViewDataPacketList, UtilTools} from 'basic-view-data';
+import {BasicViewDataPacketList} from 'basic-view-data';
+import {Menu} from './menu.domain';
 
-export class HeaderMenu extends BasicViewDataPacket{
-  readonly Id: string;
-  Name: string;
-  Mark: string;
-  Router: string;
+export class HeaderMenu extends Menu{
   constructor(options: Partial<HeaderMenu> = {}) {
-    super();
-    this.Id = UtilTools.uuid();
-    this.Name = options.Name || '';
-    this.Router = options.Router || '';
-    this.Mark = options.Mark || '';
+    super(options);
   }
 }
 

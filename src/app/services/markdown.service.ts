@@ -6,10 +6,12 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class MarkdownService {
-  requestService: RequestService = new RequestService(this.http);
+  requestService: RequestService;
   constructor(
-    private http: HttpClient
-  ) { }
+    private http?: HttpClient
+  ) {
+    this.requestService = new RequestService(this.http);
+  }
 
   getJsonConfig<T>(configName: string): Promise<T>{
     const url = `./config/${configName}.config.json`;
@@ -21,6 +23,7 @@ export class MarkdownService {
   }
 
   getMarkDown<T>(markDownName: string): Promise<T>{
+    this.requestService.optionParam = {responseType: 'text'};
     const url = `./config/${markDownName}.md`;
     return new Promise(resolve => {
       this.requestService.get(url).then((res: T) => {

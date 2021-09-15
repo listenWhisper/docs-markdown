@@ -7,7 +7,7 @@
     <div class="header-explanation display-flex align-items-center">
       <div class="header-explanation-tab">
         <nz-tabset [(nzSelectedIndex)]="selectedIndex" nzTabPosition="bottom">
-          <nz-tab *ngFor="let item of headerMenuList.items; let i = index" [nzTitle]="item.Name" ></nz-tab>
+          <nz-tab *ngFor="let item of headerMenuList.items; let i = index" [nzTitle]="item.Name" (nzClick)="navSelect(item, i)"></nz-tab>
         </nz-tabset>
       </div>
       <i class="header-explanation-github cursor-pointer" nz-icon nzType="github" nzTheme="outline" viewIcon (click)="toGitHub()"></i>
@@ -15,7 +15,15 @@
   </nz-header>
   <nz-content class="flex-auto display-flex content">
     <nz-sider class="h-100 content-side" nzTheme="light" nzWidth="16%">
-
+      <ul style="padding: 0">
+        <li nz-menu-group [class.main-side-group]="menu.Name" [nzTitle]="menu.Name" *ngFor="let menu of sideMenuList.items">
+          <ul nz-menu>
+            <li nz-menu-item nzMatchRouter *ngFor="let item of menu.Children">
+              <a [routerLink]="[item.Router]">{{item.Name}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </nz-sider>
     <nz-content>
       <router-outlet></router-outlet>
