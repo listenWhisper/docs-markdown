@@ -11,8 +11,8 @@
       {
         "Name": "公示公告",
         "Router": "/component/announcement",
-        "ReadName": "announcement",
-        "Mark": "announcement"
+        "ReadName": "user-login",
+        "Mark": "user-login"
       }
     ]
   }

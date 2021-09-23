@@ -1,3 +1,16 @@
-<div class="router">
-  <router-outlet></router-outlet>
-</div>
+<nz-layout class="router bg-white">
+  <nz-sider class="h-100 router-side" nzTheme="light" nzWidth="16%">
+    <ul style="padding: 0">
+      <li nz-menu-group [class.main-side-group]="menu.Name" [nzTitle]="menu.Name" *ngFor="let menu of sideMenuList.items">
+        <ul nz-menu>
+          <li nz-menu-item nzMatchRouter *ngFor="let item of menu.Children">
+            <a [routerLink]="[item.Router]" (click)="menuChange(item)">{{item.Name}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-content class="router-content">
+      <router-outlet></router-outlet>
+  </nz-content>
+</nz-layout>

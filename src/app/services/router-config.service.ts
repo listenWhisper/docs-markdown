@@ -3,8 +3,10 @@ import {HeaderMenu, HeaderMenuList} from '../domains/header-menu.domain';
 import {Route, Router, Routes} from '@angular/router';
 import {MarkdownService} from './markdown.service';
 import {RouterComponent} from '../views/router/router.component';
-import {SideMenu} from '../domains/side-menu.domain';
+import {SideMenu, SideMenuView} from '../domains/side-menu.domain';
 import {ReadonlyMarkdownComponent} from '../components/readonly-markdown/readonly-markdown.component';
+import {SessionStorageService} from './session-storage.service';
+import {SessionMap} from '../enums/session-map';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,10 @@ import {ReadonlyMarkdownComponent} from '../components/readonly-markdown/readonl
 export class RouterConfigService {
   private _headerMenuList: HeaderMenuList = new HeaderMenuList();
   private routes: Routes = [];
+  public sideMenuViewList: SideMenuView[] = [];
   constructor(
     private markdownService: MarkdownService,
+    private sessionStorageService: SessionStorageService,
     private router: Router
   ) { }
 
@@ -24,7 +28,6 @@ export class RouterConfigService {
   set headerMenuList(headerMenuList: HeaderMenuList){
     this._headerMenuList = headerMenuList;
     this.routes = [];
-
     let promise: any[] = [];
     headerMenuList.items.forEach(item => {
       promise.push(this.getMarkDown(item));
@@ -32,19 +35,28 @@ export class RouterConfigService {
 
     Promise.all(promise).then(() => {
       const first = headerMenuList.first;
-      this.routes.push({
+      const view = this.sessionStorageService.getSessionParam(SessionMap.view);
+      if(!view){
+        this.sessionStorageService.setSessionParam(SessionMap.root, first.Mark);
+        this.sessionStorageService.setSessionParam(SessionMap.view, first.Router);
+      }
+      this.routes.unshift({
         path: '',
         redirectTo: first.Router.substring(1),
         pathMatch: 'full',
       })
       this.router.resetConfig(this.routes);
-      this.router.navigate(['']).then();
+      this.router.navigate([view]).then();
     })
   }
 
   getMarkDown(headerMenu: HeaderMenu){
     return new Promise((resolve, reject) => {
       this.markdownService.getJsonConfig<any>(headerMenu.Mark).then(res => {
+        const sideMenuView = new SideMenuView();
+        sideMenuView.Id = headerMenu.Mark;
+        sideMenuView.SideMenu = res;
+        this.sideMenuViewList.push(sideMenuView)
         let children: Routes = [];
         let result: SideMenu[] = [];
         try {
@@ -65,7 +77,7 @@ export class RouterConfigService {
           component: RouterComponent,
           children: children
         };
-        this.routes.push(route);
+        this.routes.unshift(route);
         resolve(true);
       }).catch(err => {
         reject(false);

@@ -18,6 +18,7 @@ import {ViewIconDirectives} from './directives';
 import {NzTabsModule} from 'ng-zorro-antd/tabs';
 import { RouterComponent } from './views/router/router.component';
 import {ReadonlyMarkdownComponent} from './components/readonly-markdown/readonly-markdown.component';
+import {NzSelectModule} from 'ng-zorro-antd/select';
 registerLocaleData(zh);
 
 const Views = [];
@@ -36,6 +37,7 @@ const Module = [
   NzLayoutModule,
   NzMenuModule,
   NzIconModule,
+  NzSelectModule,
   NzTabsModule
 ];
 

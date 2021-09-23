@@ -15,7 +15,6 @@ export class SideMenu extends BasicViewDataPacket{
   }
 }
 
-
 export class SideMenuList extends BasicViewDataPacketList<SideMenu> {
 
   constructor(options: {
@@ -25,6 +24,35 @@ export class SideMenuList extends BasicViewDataPacketList<SideMenu> {
     if (options._Items) {
       for (const item of options._Items) {
         this.append(new SideMenu(item));
+      }
+    }
+  }
+}
+
+export class SideMenuView extends BasicViewDataPacket{
+  Id: string;
+  SideMenu: SideMenu[];
+
+  constructor(option: {
+    Id?: string;
+    SideMenu?: SideMenu[];
+  } = {}) {
+    super();
+    this.Id = option.Id || '';
+    this.SideMenu = option.SideMenu || [];
+  }
+}
+
+
+export class SideMenuViewList extends BasicViewDataPacketList<SideMenuView> {
+
+  constructor(options: {
+    _Items?: SideMenuView[]
+  } = {}) {
+    super();
+    if (options._Items) {
+      for (const item of options._Items) {
+        this.append(new SideMenuView(item));
       }
     }
   }
